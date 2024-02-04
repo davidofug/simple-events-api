@@ -881,6 +881,45 @@ export interface ApiEventEvent extends Schema.CollectionType {
   };
 }
 
+export interface ApiTicketTicket extends Schema.CollectionType {
+  collectionName: 'tickets';
+  info: {
+    singularName: 'ticket';
+    pluralName: 'tickets';
+    displayName: 'Tickets';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    event: Attribute.Relation<
+      'api::ticket.ticket',
+      'oneToOne',
+      'api::event.event'
+    >;
+    amount: Attribute.Decimal & Attribute.Required;
+    code: Attribute.String & Attribute.Required;
+    status: Attribute.Enumeration<['new', 'used', 'invalid']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'new'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::ticket.ticket',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::ticket.ticket',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -901,6 +940,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::about.about': ApiAboutAbout;
       'api::event.event': ApiEventEvent;
+      'api::ticket.ticket': ApiTicketTicket;
     }
   }
 }
