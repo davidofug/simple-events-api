@@ -69,6 +69,12 @@
           "localized": true
         }
       }
+    },
+    "prices": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::price.price",
+      "mappedBy": "event"
     }
   }
 }

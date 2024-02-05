@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "discount_rules",
+  "info": {
+    "singularName": "discount-rule",
+    "pluralName": "discount-rules",
+    "displayName": "Discount Rules",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "event": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::event.event"
+    },
+    "price": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::price.price"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "percentage",
+        "amount"
+      ],
+      "required": true,
+      "default": "percentage"
+    },
+    "apply_on": {
+      "type": "integer"
+    },
+    "expireAt": {
+      "type": "datetime"
+    },
+    "startAt": {
+      "type": "datetime"
+    },
+    "percentage_amount": {
+      "type": "integer"
+    }
+  }
+}

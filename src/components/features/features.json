@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_features_features",
+  "info": {
+    "displayName": "Features",
+    "icon": "plus",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "cost": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::price.price"
+    }
+  }
+}
